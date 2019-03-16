@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RedditLiteApp from './components/RedditLiteApp'
+import RedditLiteApp from './components/RedditLiteApp';
 
 ReactDOM.render(
   <RedditLiteApp />,
