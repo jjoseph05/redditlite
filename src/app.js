@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RedditLiteApp from './components/RedditLiteApp';
+import AppRouter from './routers/AppRouter';
 
 ReactDOM.render(
-  <RedditLiteApp />,
+  <AppRouter />,
   document.getElementById('app')
 );
 
