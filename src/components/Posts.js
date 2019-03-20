@@ -1,11 +1,66 @@
 import React from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const Posts = (props) => (
-  <div>
-    <Link to="r/1">Item One</Link>
-    <Link to="r/2">Item Two</Link>
-  </div>
-);
+class Posts extends React.Component {
+  signal = axios.CancelToken.source();
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+      error: null
+    };
+  }
+
+  componentDidMount(){
+    const { id: subReddit} = this.props.match.params
+    console.log(subReddit);
+    axios
+    .get(`https://www.reddit.com/r/${subReddit}.json`, { cancelToken: this.signal.token })
+    .then(res =>
+      res.data.data.children.slice(0, 25).map(post => ({
+        postedAt: post.data.created_utc,
+        postedBy: post.data.author,
+        title: post.data.title,
+        url: post.data.url,
+      }))
+    )
+    .then(posts => {
+      this.setState(() => ({ posts }));
+    })
+    .catch(error => {
+      if (axios.isCancel(error)){
+        console.log('Error: ', error.message);
+      } else {
+        this.setState({loading: false, error});
+      }
+    })
+  }
+  componentWillUnmount() {
+    this.signal.cancel('Api is being cancelled');
+  }
+  render(){
+    const { posts } = this.state;
+    console.log(this.state)
+    return (
+      <div>
+        <p>Testing!</p>
+        {
+          posts && posts.map((post, index) => {
+            console.log('heeeeey',post)
+            return (
+              <div key={index}>
+                <p>{post.postedAt}</p>
+                <p>{post.postedby}</p>
+                <p>{post.title}</p>
+                <p>{post.url}</p>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
+}
 
 export default Posts;

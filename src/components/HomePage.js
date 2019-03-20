@@ -12,32 +12,34 @@ export default class HomePage extends React.Component {
     };
   }
   componentDidMount() {
-
-    axios
-      .get('https://www.reddit.com/.json', { cancelToken: this.signal.token })
-      .then(res => {
-        const posts = res.data.data.children;
-        const titles = [];
-        posts.map((post)=> {
-          titles.push(post.data.subreddit);
+    this.interval = setInterval(() => {
+      axios
+        .get('https://www.reddit.com/.json', { cancelToken: this.signal.token })
+        .then(res => {
+          const posts = res.data.data.children;
+          const titles = [];
+          posts.map((post)=> {
+            titles.push(post.data.subreddit);
+          })
+          this.setState(() => {
+            return {
+              loading: false,
+              postTitles: this.state.postTitles.concat(titles)
+            }
+          })
         })
-        this.setState(() => {
-          return {
-            loading: false,
-            postTitles: this.state.postTitles.concat(titles)
+        .catch(error => {
+          if (axios.isCancel(error)){
+            console.log('Error: ', error.message);
+          } else {
+            console.log('error');
+            this.setState({loading: false});
           }
         })
-      })
-      .catch(error => {
-        if (axios.isCancel(error)){
-          console.log('Error: ', error.message);
-        } else {
-          console.log('error');
-          this.setState({loading: false});
-        }
-      })
+    }, 2000);
   }
   componentWillUnmount() {
+    clearInterval(this.interval);
     this.signal.cancel('Api is being cancelled');
   }
   render() {
