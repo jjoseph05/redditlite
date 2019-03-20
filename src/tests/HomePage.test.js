@@ -10,3 +10,10 @@ describe('Home Page', () => {
   // Renders search field
   // Renders popular posts "Cards"
 });
+
+
+// import getPopularPosts
+// mock Function
+// returns popular posts from reddit homepage
+// renders card component
+// ???
