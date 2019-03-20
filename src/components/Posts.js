@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Card from './Card';
 import { Link } from 'react-router-dom';
 
 class Posts extends React.Component {
@@ -12,8 +13,8 @@ class Posts extends React.Component {
     };
   }
 
-  componentDidMount(){
-    const { id: subReddit} = this.props.match.params
+  componentDidMount() {
+    const { id: subReddit } = this.props.match.params;
     console.log(subReddit);
     axios
     .get(`https://www.reddit.com/r/${subReddit}.json`, { cancelToken: this.signal.token })
@@ -46,17 +47,9 @@ class Posts extends React.Component {
       <div>
         <p>Testing!</p>
         {
-          posts && posts.map((post, index) => {
-            console.log('heeeeey',post)
-            return (
-              <div key={index}>
-                <p>{post.postedAt}</p>
-                <p>{post.postedby}</p>
-                <p>{post.title}</p>
-                <p>{post.url}</p>
-              </div>
-            )
-          })
+          posts && posts.map((post, index) => (
+            <Card key={index} {...post}/>
+          ))
         }
       </div>
     )

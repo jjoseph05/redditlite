@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Card = (props) => (
+const Card = ({postedAt, postedby, title, url} = {}) => (
   <div>
-    <p>This is a Card with a subReddit id of {props.match.params.id}</p>
+    <p>{postedAt}</p>
+    <p>{postedby}</p>
+    <p>{title}</p>
+    <p>{url}</p>
   </div>
 );
-
 export default Card;
