@@ -21,19 +21,19 @@ export default class Search extends React.Component {
 
   render() {
   return (
-    <form onSubmit={this.handleWordFormSubmit}>
-      <div>
+    <form style={{display: "flex", justifyContent: "center", alignItems: "center"}} onSubmit={this.handleWordFormSubmit}>
+      <div style={{ height: 40}}>
         <input
+          style={{ height: "40px", fontSize: "16px"}}
           name="subreddit"
           value={this.state.userInput}
           onChange={this.onInputChange}
           placeholder="movies"
         />
-      </div>
-      <div>
-      <button
-        disabled={!this.state.userInput}
-      >
+        <button
+          style={{ height: "40px"}}
+          disabled={!this.state.userInput}
+        >
         Find Subreddits
       </button>
     </div>
