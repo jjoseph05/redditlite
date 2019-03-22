@@ -2,7 +2,6 @@ import React from 'react';
 
 export default class Search extends React.Component {
   constructor(props) {
-    console.log('props', props);
     super(props);
     this.state = {
       userInput: props.userInput ? props.userInput : ''
@@ -11,7 +10,7 @@ export default class Search extends React.Component {
 
   onInputChange = (e) => {
     const userInput = e.target.value;
-    this.setState(()=> ({ userInput }))
+    this.setState(() => ({ userInput }));
   };
 
   handleWordFormSubmit = (e) => {

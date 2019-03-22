@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import Card from './Card';
-import { Link } from 'react-router-dom';
 
 class Posts extends React.Component {
   signal = axios.CancelToken.source();
+
   constructor(props) {
     super(props);
     this.state = {
@@ -12,9 +12,9 @@ class Posts extends React.Component {
       error: null,
       loading: true
     };
-  }
+  };
+
   getSubreddits = (subReddit, postLimit) => {
-    // console.log('getting the reddits', subReddit)
     axios
       .get(`https://www.reddit.com/r/${subReddit}.json`, { cancelToken: this.signal.token })
       .then(res =>
@@ -33,9 +33,9 @@ class Posts extends React.Component {
         if (axios.isCancel(error)){
           console.log('Error: ', error.message);
         } else {
-          this.setState({loading: false, error});
+          this.setState({ loading: false, error });
         }
-      })
+      });
   };
 
   componentDidMount() {
@@ -45,24 +45,27 @@ class Posts extends React.Component {
       this.getSubreddits(subReddit);
     }, 10000);
 
-  }
+  };
+
   componentWillUnmount() {
     clearInterval(this.interval);
     this.signal.cancel('Preventing Memory Leak, Api is being cancelled');
-  }
-  componentDidUpdate(prevProps, prevState){
+  };
 
+  componentDidUpdate(prevProps, prevState) {
     const prevLength = prevState.posts.length;
     const currentLength = this.state.posts.length;
-    // console.log('', prevState.posts[prevLength -1]);
-    if (prevState.posts.length > 0 && (prevState.posts[prevLength - 1].url !== this.state.posts[currentLength - 1].url)) {
+
+    if (prevState.posts.length > 0 &&
+      (prevState.posts[prevLength - 1].url !== this.state.posts[currentLength - 1].url)) {
       this.setState(() => { posts: this.state.posts })
     }
-    console.log(this.state.posts.length);
-  }
-  render(){
+  };
+
+  render() {
     const { loading, posts } = this.state;
     const { id: subRedditTitle } = this.props.match.params;
+
     return (
       <div>
       { loading && (
