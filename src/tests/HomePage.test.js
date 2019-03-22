@@ -1,19 +1,15 @@
 import React from 'react';
 import HomePage from '../components/HomePage';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+
 
 describe('Home Page', () => {
   it('renders', () => {
     const homePage = shallow(<HomePage />);
-    expect(homePage.find('div').text()).toEqual('Loading...');
+    expect(homePage.length).toBe(1);
   });
-  // Renders search field
-  // Renders popular posts "Cards"
+  it('renders a search component', () => {
+    const homePage = mount(<HomePage/>);
+    expect(homePage.find('Search').length).toBe(1);
+  });
 });
-
-
-// import getPopularPosts
-// mock Function
-// returns popular posts from reddit homepage
-// renders card component
-// ???
