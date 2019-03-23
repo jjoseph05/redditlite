@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import Card from './Card';
 
 class Posts extends React.Component {
@@ -67,14 +68,19 @@ class Posts extends React.Component {
     const { id: subRedditTitle } = this.props.match.params;
 
     return (
-      <div>
+      <div style={{ backgroundColor: "#DAE0E6" }}>
       { loading && (
         <div style={{ opacity: loading ? 0.5 : 1, textAlign: "center" }}>
           <p>Loading!</p>
         </div>
       ) || (
           <div>
-            <h3>r/{subRedditTitle}</h3>
+            <div style={{ textAlign: "center", padding: "1em 0", boxShadow: "0 8px 6px -8px #999" }}>
+              <span>
+                <Link to={"/"}>Home/</Link>
+              </span>
+              <span>r/{subRedditTitle}</span>
+            </div>
             {
               posts && posts.map((post, index) => (
                 <Card key={index} {...post}/>

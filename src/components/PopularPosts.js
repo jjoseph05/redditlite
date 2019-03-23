@@ -16,12 +16,12 @@ const popularPostStyles = {
     fontSize: "20px",
     margin: 'auto',
     marginBottom: 10,
-    width: '48%',
+    width: '50%',
     padding: ".5em 1em",
     listStyle: 'none',
     fontWeight: 300,
     ":hover": {
-      boxShadow: "0 0 5px grey"
+      outline: "1px solid grey"
     }
   }
 };
@@ -37,7 +37,7 @@ const PopularPosts = (props) => (
               to={`/r/${post.title}`}>
               {post.title}
             </Link>
-            <span>{post.ups}</span>
+            <span>{post.ups} &#10514;</span>
           </li>
         )
       )}

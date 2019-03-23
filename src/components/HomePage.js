@@ -50,14 +50,10 @@ export default class HomePage extends React.Component {
     this.signal.cancel('Api is being cancelled');
   }
   render() {
-    const title = `Fantastic Reddit Posts & Where to Find Them r/[..]`;
     const { loading, postTitles: posts } = this.state;
 
     return (
       <div>
-        <div style={{ fontFamily: "Rubik", textAlign: "center", wordWrap: "break-word", width: 375, fontSize: "1em", margin: "0 auto"}}>
-          <h1>{title}</h1>
-        </div>
         <Search history={this.props.history}/>
         {
           !loading && (
@@ -66,7 +62,7 @@ export default class HomePage extends React.Component {
             </div>
           ) || (
             <div style={{ opacity: loading ? 0.5 : 1, textAlign: "center" }}>
-              <h1>Loading...</h1>
+              <p>Loading!</p>
             </div>
           )
         }

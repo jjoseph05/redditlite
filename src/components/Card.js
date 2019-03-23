@@ -1,13 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 import styled from 'styled-components';
 
 const cardStyles = {
-  background: 'lightblue',
-  border: '1px solid black',
-  borderRadius: 5,
+  background: '#fff',
   color: 'black',
   padding: '1.5em',
-  width: '70%',
+  width: '50%',
   margin: '1.5em auto',
   display: "flex",
   flexDirection: "column"
@@ -16,11 +15,13 @@ const cardStyles = {
 const StyledDiv = styled.div`${cardStyles}`;
 const Card = ({postedAt, postedBy, title, url, thumbnail} = {}) => (
   <StyledDiv>
-    <p>Posted by u/{postedBy} @ {postedAt}</p>
-    <a style={{marginBottom: 10}}href={url}>{title}</a>
-    {thumbnail !== 'self' &&
-      <img style={{maxWidth: "240px", height: "auto"}} src={thumbnail}/>}
-    <a href={url}>Comments</a>
+    <p style={{ fontSize: ".8em", fontWeight: 200 }}>posted by: u/{postedBy} @ {moment().utc(postedAt).format('HH:mm | YYYY/MM/DD')}</p>
+    <a style={{ marginBottom: "1em", fontSize: "1.5em", fontWeight: 700 }}href={url}>{title}</a>
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+      {thumbnail !== 'self' &&
+        <img style={{ maxWidth: "240px", height: "auto", order: 2 }} src={thumbnail}/>}
+      <a style={{ order: 1 }} href={url}>Comments&#128488;</a>
+    </div>
   </StyledDiv>
 );
 

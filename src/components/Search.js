@@ -20,21 +20,23 @@ export default class Search extends React.Component {
 
   render() {
   return (
-    <form style={{display: "flex", justifyContent: "center", alignItems: "center"}} onSubmit={this.handleWordFormSubmit}>
-      <div style={{ height: 40,  height: "5em", backgroundColor: "lavender", padding: "2.4em", borderRadius: 5}}>
+    <form style={{ display: "flex", justifyContent: "center", alignItems: "center" }} onSubmit={this.handleWordFormSubmit}>
+      <div style={{ backgroundColor: "#DAE0E6", padding: ".3em", display: "flex", flex: 1, textAlign: "center", boxShadow: "0 8px 6px -8px #999" }}>
+      <div style={{ height: 40, backgroundColor: "#DAE0E6", padding: "0 22%", display: "flex", flex: 1 }}>
         <input
-          style={{ height: "100%", fontSize: "16px", borderBottomLeftRadius: "1em", borderBottomLeftRadius: "1em", paddingLeft: 16}}
+          style={{ fontSize: "1em", borderRadius: 0, borderColor: "#e0e0e0", borderWidth: "1px 0 1px 1px", borderStyle: "solid", paddingLeft: 16, flex: 2 }}
           name="subreddit"
           value={this.state.userInput}
           onChange={this.onInputChange}
-          placeholder="movies"
+          placeholder="search subreddits"
         />
         <button
-          style={{ height: "100%", paddingBottom: 1, paddingTop: 4, border: "1px solid lavendar", borderBottomRightRadius: "1em", borderTopRightRadius: "1em", paddingRight: 1}}
+          style={{ fontWeight: 100, fontSize: ".9em", borderRadius: 0, color: "#fff", backgroundColor: "#444", paddingLeft: 20, paddingRight: 20  }}
           disabled={!this.state.userInput}
         >
-          Find Subreddits
+          &#10233;
         </button>
+      </div>
       </div>
     </form>
   )}
