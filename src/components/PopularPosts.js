@@ -2,30 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const PostsStyles = {
-  background: '#DAE0E6',
-  margin: 0,
-  padding: '25px 0 25px 0',
-  listStyle: {
-    display: 'flex',
-    justifyContent: "space-between",
-    background: '#FFFFFF',
-    fontSize: "20px",
-    margin: 'auto',
-    marginBottom: 10,
-    width: '30%',
-    padding: 10,
-    borderRadius: 5,
-    listStyle: 'none',
-    fontWeight: "bold"
-  }
-}
-
 const popularPostStyles = {
   "& .popularPostsList": {
     background: '#DAE0E6',
     margin: 0,
     padding: '25px 0 25px 0',
+    fontFamily: 'Rubik'
   },
   "& .popularPostItem": {
     display: 'flex',
@@ -34,11 +16,10 @@ const popularPostStyles = {
     fontSize: "20px",
     margin: 'auto',
     marginBottom: 10,
-    width: '30%',
-    padding: 10,
-    borderRadius: 5,
+    width: '48%',
+    padding: ".5em 1em",
     listStyle: 'none',
-    fontWeight: "bold",
+    fontWeight: 300,
     ":hover": {
       boxShadow: "0 0 5px grey"
     }

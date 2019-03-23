@@ -69,7 +69,7 @@ class Posts extends React.Component {
     return (
       <div>
       { loading && (
-        <div style={{ opacity: loading ? 0.5 : 1 }}>
+        <div style={{ opacity: loading ? 0.5 : 1, textAlign: "center" }}>
           <p>Loading!</p>
         </div>
       ) || (
