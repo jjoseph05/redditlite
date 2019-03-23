@@ -1,5 +1,5 @@
 # redditlite
-sub-reddit-search
+sub-reddit-search  
 See the top subreddits, and search your favourites!
 
 To run:  
